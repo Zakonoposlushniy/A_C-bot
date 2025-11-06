@@ -8,13 +8,12 @@ class TelegramBot:
         self.group_chat_id = group_chat_id
         self.application = ApplicationBuilder().token(self.token).build()
 
-        # Логирование
+        
         logging.basicConfig(
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
             level=logging.INFO
         )
 
-        # Обработчики
         self.application.add_handler(CommandHandler("start", self.start))
         self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
@@ -35,6 +34,7 @@ class TelegramBot:
 
 if __name__ == '__main__':
     TOKEN = '8121514569:AAFJR5MNhVLk1ac0kuxu7m7X4CBzo88dMfE'
-    GROUP_CHAT_ID = -5007465480  # Замените на ID вашей группы
+    GROUP_CHAT_ID = -5007465480
     bot = TelegramBot(TOKEN, GROUP_CHAT_ID)
     bot.run()
+
